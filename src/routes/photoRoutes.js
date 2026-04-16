@@ -1,11 +1,11 @@
-import photocontroller from "photocontroller.js";
+import {uploadPhotoImages, getMultiplePhotos} from "../controllers/photocontroller.js";
 import express from "express";
-import authMiddlewware from "authmiddleware.js";
-import upload  from "uploadmiddleware";
+import authMiddleware from "../middleware/authmiddleware.js";
+import upload from "../middleware/uploadmiddleware.js";
 
 const router = express.Router();
 
-router.post("/uploadphoto",authMiddlewware, upload.single("image"), photocontroller.uploadPhotoImages);
-router.get("/", photocontroller.getMultiplePhotos);
+router.post("/uploadphoto", authMiddleware, upload.single("image"), uploadPhotoImages);
+router.get("/", getMultiplePhotos);
 
 export default router;

@@ -1,6 +1,5 @@
 import jwt from "jsonwebtoken";
 
-
 function authMiddleware(req, res, next) {
     const protect = req.headers.authorization;
 

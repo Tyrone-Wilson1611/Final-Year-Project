@@ -1,15 +1,14 @@
-import { promise, reject } from "bcrypt/promises";
-import cloudinary from "../utils/cloudinary";
-import prisma from "../utils/prisma";
+import cloudinary from "../utils/cloudinary.js";
+import prisma from "../utils/prisma.js";
 
 const cloudinaryUpload = (buffer) => {
-    return new promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         const upload_stream = cloudinary.uploader.upload_stream(
             {folder: "photoport"}, (error, result) => {
                 if (error) {
                     return reject(error);
-                    resolve(result)
                 }
+                resolve(result)
             }
         )
     })
@@ -48,7 +47,7 @@ export const getMultiplePhotos = async(req, res) => {
                 user: {
                     select: {
                         id: true,
-                        username: true
+                        userName: true
                     }
                 }
             },
