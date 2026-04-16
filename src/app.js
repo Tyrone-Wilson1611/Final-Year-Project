@@ -13,5 +13,4 @@ app.get('/', (req, res) => {
     res.json({ message: "API is now up and running"});
 });
 
-
 export default app;
