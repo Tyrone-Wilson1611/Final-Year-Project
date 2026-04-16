@@ -10,7 +10,6 @@ function authMiddleware(req, res, next) {
         return res.status(401).json({error: "No token has been provided"});
 
     }
-    
     try {
         const decode = jwt.verify(token, process.env.JWT_SECRET);
         req.user = decode;

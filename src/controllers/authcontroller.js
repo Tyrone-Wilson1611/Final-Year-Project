@@ -2,6 +2,7 @@ import bcrpyt from "bcrypt"
 import jwt from "jsonwebtoken";
 import prisma from "../utils/prisma.js";
 
+
 export const userRegistration = async (req, res) => {
     try {
         const {email, userName, password} = req.body;
