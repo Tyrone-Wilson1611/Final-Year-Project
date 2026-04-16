@@ -13,5 +13,8 @@ app.get('/', (req, res) => {
     res.json({ message: "API is now up and running"});
 });
 
+app.use("/api/auth", authRoutes);
+app.use("/api/photos", photoRoutes);
+
 
 export default app;
