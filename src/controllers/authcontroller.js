@@ -5,13 +5,13 @@ import prisma from "../utils/prisma.js";
 
 export const userRegistration = async (req, res) => {
     try {
-        const {email, userName, password} = req.body;
-        if (!email || !userName || !password)
+        const {email, username, password} = req.body;
+        if (!email || !username || !password)
             return res.status(400).json({ error: "Email, username and password are required to register"});
 
 
         const existingUser = await prisma.user.findFirst({
-            where: { OR: [{email}, {userName}]}});
+            where: { OR: [{email}, {username}]}});
 
         if (existingUser) {
             return res.status(409).json({ error: "Email or username is already in use"});
@@ -23,7 +23,7 @@ export const userRegistration = async (req, res) => {
 
         const user = await prisma.user.create ({
             data: {
-                email, userName, password: hashPassword
+                email, username, password: hashPassword
             }
         });
         
@@ -70,7 +70,7 @@ export const login = async(req, res) => {
             user: {
                 id: user.id,
                 email: user.email,
-                username: user.userName
+                username: user.username
             }
         });
 } catch (error) {

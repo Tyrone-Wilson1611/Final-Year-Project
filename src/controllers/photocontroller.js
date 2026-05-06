@@ -47,7 +47,7 @@ export const getMultiplePhotos = async(req, res) => {
                 user: {
                     select: {
                         id: true,
-                        userName: true
+                        username: true
                     }
                 }
             },

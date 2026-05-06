@@ -15,9 +15,9 @@ app.get('/', (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/photos", photoRoutes);
 
-app.use((req, res, err, next) => {
+app.use((err, req, res, next) => {
     if (err) {
-        return res.status(400).json({ error: err.message || "Something has gone wrong"});
+        return res.status(400).json({error: err.message || "something has gone wrong"});
     }
     next();
 
