@@ -1,14 +1,16 @@
 import jwt from "jsonwebtoken";
 
 function authMiddleware(req, res, next) {
+    
     const protect = req.headers.authorization;
 
-    const token = protect.split("")[1];
-
-    if (!protect || !protect.startsWith("Bearer")) {
+    if (!protect || !protect.startsWith("Bearer ")) {
         return res.status(401).json({error: "No token has been provided"});
 
     }
+
+    const token = protect.split(" ")[1];
+    
     try {
         const decode = jwt.verify(token, process.env.JWT_SECRET);
         req.user = decode;

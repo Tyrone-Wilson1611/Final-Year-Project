@@ -31,6 +31,7 @@ export const userRegistration = async (req, res) => {
             user: {
                 id: user.id,
                 email: user.email,
+                username: user.username
             }
         });
 
@@ -45,7 +46,7 @@ export const login = async(req, res) => {
     try {
         const {email, password} = req.body
 
-        if (!email && !password)
+        if (!email || !password)
             return res.status(400).json({error: "Email and password required to login"});
 
         const user = await prisma.user.findUnique({where: {email}

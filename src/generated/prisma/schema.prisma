@@ -13,11 +13,20 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
   password  String
-  username  String   @unique
+  username  String    @unique
+  bio       String?
+  avatarUrl String?
   photos    Photo[]
+  comments  Comment[]
+  likes     Like[]
+
+  portfolio Portfolio?
+  followers Follow[]   @relation("UserFollowers")
+  following Follow[]   @relation("UserFollowing")
+
   createdAt DateTime @default(now())
 }
 
@@ -27,7 +36,69 @@ model Photo {
   imageUrl  String
   publicId  String
   userId    Int
+  type      String   @default("post")
   createdAt DateTime @default(now())
 
-  user User @relation(fields: [userId], references: [id])
+  user           User            @relation(fields: [userId], references: [id])
+  comments       Comment[]
+  likes          Like[]
+  portfolioItems PortfolioItem[]
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  text      String
+  userId    Int
+  photoId   Int
+  createdAt DateTime @default(now())
+
+  user  User  @relation(fields: [userId], references: [id])
+  photo Photo @relation(fields: [photoId], references: [id])
+}
+
+model Like {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  photoId   Int
+  createdAt DateTime @default(now())
+
+  user  User  @relation(fields: [userId], references: [id])
+  photo Photo @relation(fields: [photoId], references: [id])
+
+  @@unique([userId, photoId])
+}
+
+model Portfolio {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @unique
+  layout    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user  User            @relation(fields: [userId], references: [id])
+  items PortfolioItem[]
+}
+
+model PortfolioItem {
+  id          Int @id @default(autoincrement())
+  portfolioId Int
+  photoId     Int
+  position    Int
+
+  portfolio Portfolio @relation(fields: [portfolioId], references: [id], onDelete: Cascade)
+  photo     Photo     @relation(fields: [photoId], references: [id])
+
+  @@unique([portfolioId, position])
+}
+
+model Follow {
+  id          Int      @id @default(autoincrement())
+  followerId  Int
+  followingId Int
+  createdAt   DateTime @default(now())
+
+  follower  User @relation("UserFollowing", fields: [followerId], references: [id])
+  following User @relation("UserFollowers", fields: [followingId], references: [id])
+
+  @@unique([followerId, followingId])
 }

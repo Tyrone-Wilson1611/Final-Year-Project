@@ -125,6 +125,8 @@ exports.Prisma.UserScalarFieldEnum = {
   email: 'email',
   password: 'password',
   username: 'username',
+  bio: 'bio',
+  avatarUrl: 'avatarUrl',
   createdAt: 'createdAt'
 };
 
@@ -134,6 +136,44 @@ exports.Prisma.PhotoScalarFieldEnum = {
   imageUrl: 'imageUrl',
   publicId: 'publicId',
   userId: 'userId',
+  type: 'type',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.CommentScalarFieldEnum = {
+  id: 'id',
+  text: 'text',
+  userId: 'userId',
+  photoId: 'photoId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.LikeScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  photoId: 'photoId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.PortfolioScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  layout: 'layout',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PortfolioItemScalarFieldEnum = {
+  id: 'id',
+  portfolioId: 'portfolioId',
+  photoId: 'photoId',
+  position: 'position'
+};
+
+exports.Prisma.FollowScalarFieldEnum = {
+  id: 'id',
+  followerId: 'followerId',
+  followingId: 'followingId',
   createdAt: 'createdAt'
 };
 
@@ -155,7 +195,12 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   User: 'User',
-  Photo: 'Photo'
+  Photo: 'Photo',
+  Comment: 'Comment',
+  Like: 'Like',
+  Portfolio: 'Portfolio',
+  PortfolioItem: 'PortfolioItem',
+  Follow: 'Follow'
 };
 
 /**
