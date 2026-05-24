@@ -15,10 +15,13 @@ export const getUsername = async (req, res) => {
                             select: {
                             followers: true,
                             following: true,
-                            photos: true
+                            photos: {
+                                where: {
+                                    type: "post"
+                                }
+                            }
                             }
                         },
-                        photos: {
                         orderBy: {
                         createdAt: "desc"
                         },
@@ -29,7 +32,7 @@ export const getUsername = async (req, res) => {
                             }
                         }
                     }
-                }
+                
             }
         });
         if (!user) {
@@ -55,6 +58,9 @@ export const getProfile = async (req, res) => {
                 avatarUrl: true,
                 createdAt: true,
                 photos: {
+                    where : {
+                        type: "post"
+                    },
                     orderBy: {
                         createdAt: "desc"
                     }
