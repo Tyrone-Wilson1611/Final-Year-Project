@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { api } from "../api/api";
 
 const AuthContext = createContext(null);
-
+//calls authentication from the backend and allows for it to be accessible in the frontend
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(() => localStorage.getItem("token"));
@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
         return data;
 
     };
-
+    //local storage updates user so the user can remain in the profile when updating their details
     const updateUser = (updatedUser) => {
         localStorage.setItem("user", JSON.stringify(updatedUser));
         setUser(updatedUser);

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ImagePlus } from "lucide-react";
 import { api } from "../api/api.js";
 import Navbar from "../components/Navbar.jsx";
-
+//frontend page for uploading a post
 const Upload = () => {
     const navigate = useNavigate();
 

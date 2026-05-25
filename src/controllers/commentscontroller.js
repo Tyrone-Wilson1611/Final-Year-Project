@@ -1,5 +1,5 @@
 import prisma from "../utils/prisma.js";
-
+//checks for photoid and turns it into a number first before allowing user to comment
 export const commentCreate = async (req, res) => {
     try {
         const photoId = Number(req.params.photoid);
@@ -10,13 +10,13 @@ export const commentCreate = async (req, res) => {
         if (!text || text.trim() === "") {
             return res.status(400).json({error: "Comment text cannot be empty"});
         }
-
+        //checking if photo id exists
         const photo = await prisma.photo.findUnique({where: {id: photoId}});
         if (!photo) {
             return res.status(404).json({error: "Photo not found"});
 
         }
-
+        //if photoId exists, comment can now be created
         const comment = await prisma.comment.create({
             data: {
                 text, photoId, userId: req.user.userId
@@ -35,7 +35,7 @@ export const commentCreate = async (req, res) => {
         return res.status(500).json({error: "there was a server error when creating a comment"});
     }
 };
-
+// allows users to be able to see other users' comments on a post
 export const PhotoComments = async (req, res) => {
     try {
         const photoId = Number(req.params.photoid);
@@ -62,7 +62,7 @@ export const PhotoComments = async (req, res) => {
         return res.status(500).json({error: "there was a server error when trying to obtain comments for a photo"});
     }
 };
-
+    //checks to see if comment id exists, if it exists then the comment is deleted
 export const commentdeletion = async (req, res) => {
     try {const commentId = Number(req.params.commentid);
 

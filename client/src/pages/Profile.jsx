@@ -3,7 +3,7 @@ import { useParams, Link, useSearchParams } from "react-router-dom";
 import { api } from "../api/api.js";
 import { useAuth } from "../context/auth.jsx";
 import Navbar from '../components/Navbar.jsx';
-
+//frontend display for user profile
 const Profile = () => {
     const { username } = useParams();
     const { user: currentUser } = useAuth();
@@ -22,8 +22,8 @@ const Profile = () => {
     const isOwnProfile = currentUser?.username === username;
 
     useEffect(() => {
-        const loadProfle = async () => {
-            try {
+        const loadProfile = async () => {
+            try {   
                 const profileData = await api(`/users/${username}`, { method: "GET"});
 
                 const portfolioData = await api(`/portfolio/${username}`, {method: "GET"

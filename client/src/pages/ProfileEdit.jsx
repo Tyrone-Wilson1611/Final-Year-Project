@@ -4,7 +4,7 @@ import { api } from "../api/api.js";
 import { useAuth } from "../context/auth.jsx";
 import Navbar from '../components/Navbar.jsx';
 
-
+//page for editing a user profile
 const ProfileEdit = () => {
     const navigate = useNavigate();
     const { updateUser } = useAuth();

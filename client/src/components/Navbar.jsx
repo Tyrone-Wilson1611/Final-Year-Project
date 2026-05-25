@@ -3,7 +3,7 @@ import { useAuth } from "../context/auth.jsx";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-
+    //responsible for navigation in application
 const Navbar = () => {
     const {user, logout} = useAuth();
     const [openMenu, setOpenMenu] = useState(false);

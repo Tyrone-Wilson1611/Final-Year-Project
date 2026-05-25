@@ -2,7 +2,7 @@ import {useState} from 'react';
 import { useAuth } from '../context/auth.jsx';
 import { Link, useNavigate } from 'react-router-dom';
 
-
+//frontend page for user registration
 const Register =() => {
     const navigate = useNavigate();
     const {register} = useAuth();

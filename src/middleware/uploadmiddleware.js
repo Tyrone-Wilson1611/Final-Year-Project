@@ -1,5 +1,5 @@
 import multer from "multer";
-
+//responsible for photo upload storage
 const uploadStorage = multer.memoryStorage();
 
 const upload = multer({

@@ -5,9 +5,8 @@ import photoRoutes from "./routes/photoRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import portfolioRoutes from "./routes/portfolioRoutes.js";
 import followRoutes from "./routes/followRoutes.js";
-// import commentRoutes from "./routes/commentRoutes.js";
-// import likesRoutes from "./routes/likesRoutes.js"
 
+//All API routes for the app
 const app = express();
 
 app.use(cors());

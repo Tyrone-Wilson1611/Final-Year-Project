@@ -1,7 +1,7 @@
 import prisma from "../utils/prisma.js";
 
 const allowedLayouts = ["layout_1", "layout_2"];
-
+//validates to see if they layout that is placed inside the portfolio is correct
 const validateInput = (layout, items) => {
     if (!allowedLayouts.includes(layout)) {
         return "invalid layout for portfolio";
@@ -33,7 +33,7 @@ const validateInput = (layout, items) => {
     }
     return null;
 };
-
+    //able to access the portfolio from the username
 export const getPortfolioUsername = async (req, res) => {
     try {
         const {username} = req.params;
@@ -66,7 +66,7 @@ export const getPortfolioUsername = async (req, res) => {
             return res.status(500).json({error: "server error whilst getting portfolio"});
         }
 };
-
+    //update portfolio by replacing existing portfolio
 export const updatePortfolio = async (req, res) => {
     try {
         const userId = req.user.userId;
@@ -87,7 +87,7 @@ export const updatePortfolio = async (req, res) => {
             return res.status(400).json({error: "you can only add your own photos to your portfolio"});
 
     }
-
+        //transaction in prisma that deletes original portfolio and creates a new portfolio in the database
     const portfolio = await prisma.$transaction (async (tx) => {
         const currentPortfolio = await tx.portfolio.upsert({
             where: {userId},
@@ -129,7 +129,7 @@ export const updatePortfolio = async (req, res) => {
         return res.status(500).json({error: "server error whilst updating user portfolio"});
     } 
 };
-
+    //deletes portfolio
 export const deletePortfolio = async (req, res) => {
     try {
         const userId = req.user.userId;

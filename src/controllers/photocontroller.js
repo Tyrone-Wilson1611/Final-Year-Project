@@ -1,6 +1,6 @@
 import cloudinary from "../utils/cloudinary.js";
 import prisma from "../utils/prisma.js";
-
+//cloudinary upload stream
 const cloudinaryUpload = (buffer) => {
     return new Promise((resolve, reject) => {
         const upload_stream = cloudinary.uploader.upload_stream(
@@ -15,7 +15,7 @@ const cloudinaryUpload = (buffer) => {
     });
 }
 
-
+    //function that allows for users to upload photos onto the app
 export const uploadPhotoImages = async (req, res) => {
     try {
         const {title, type} = req.body;
@@ -40,7 +40,7 @@ export const uploadPhotoImages = async (req, res) => {
     }
 }
 
-
+    //responsible for home page public user posts
 export const getMultiplePhotos = async(req, res) => {
     try {
         const photos = await prisma.photo.findMany({
@@ -70,7 +70,7 @@ export const getMultiplePhotos = async(req, res) => {
     }
 }
 
-
+    //gets photos by the photo ID
 export const getPhotobyId = async(req, res) => {
     try {
         const photoId = Number(req.params.id);

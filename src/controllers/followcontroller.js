@@ -1,5 +1,5 @@
 import prisma from "../utils/prisma.js";
-
+//allows for users to follow another user
 export const followUser = async (req, res) => {
     try {
         const followerId = req.user.userId;
@@ -40,7 +40,7 @@ export const followUser = async (req, res) => {
     }
 
 };
-
+    //unfollows user by deleting counter from the database
 export const unfollow = async (req, res) => {
     try {
         const followerId = req.user.userId;

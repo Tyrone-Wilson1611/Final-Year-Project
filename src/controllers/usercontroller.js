@@ -1,5 +1,5 @@
 import prisma from "../utils/prisma.js";
-
+//gets public profile(other users)
 export const getUsername = async (req, res) => {
     try {
         const { username } = req.params;
@@ -50,7 +50,7 @@ export const getUsername = async (req, res) => {
         res.status(500).json({error: "server error whilst getting user info"});
     }
 }
-
+//gets personal profile
 export const getProfile = async (req, res) => {
     try {
         const userId = req.user.userId;
@@ -82,7 +82,7 @@ export const getProfile = async (req, res) => {
     }
 };
 
-
+    //function that edits username, bio and avatarURL
 export const updateProfile = async (req, res) => {
     try {
         const userId = req.user.userId;
