@@ -25,6 +25,7 @@ export const AuthProvider = ({ children }) => {
                 username, 
                 password})
         });
+
         return data;
     };
 
@@ -40,14 +41,14 @@ export const AuthProvider = ({ children }) => {
         setUser(data.user);
 
 
-        return data;import { BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
+        return data;
 
     };
 
     const updateUser = (updatedUser) => {
         localStorage.setItem("user", JSON.stringify(updatedUser));
-        setUser(updateUser);
-    }
+        setUser(updatedUser);
+    };
 
     const logout = () => {
         localStorage.removeItem("token");
@@ -57,16 +58,18 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{
+        <AuthContext.Provider
+            value={{
             user,
             token,
             loading,
             isAuthenticated: Boolean(token),
             register,
             login,
+            updateUser,
             logout
         }}
-        >
+    >
             {children}
         </AuthContext.Provider>
     );
