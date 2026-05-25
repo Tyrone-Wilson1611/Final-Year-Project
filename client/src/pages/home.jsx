@@ -1,7 +1,7 @@
 import { useAuth } from '../context/auth.jsx';
 import { useEffect, useState} from 'react';
 import { api } from "../api/api.js";
-import { Bell, LogOut, Heart, MessageCircle, PlusSquare} from "lucide-react";
+import { Bell, LogOut, Heart, MessageCircle, PlusSquare, User} from "lucide-react";
 import { Link } from "react-router-dom";
 
 
@@ -147,6 +147,9 @@ const Home = () => {
                         </div>
                     )}
                     </div>
+                    <Link to={`/users/${user?.username}`} className="icon-link" aria-label="profile">
+                    <User size={22} />
+                    </Link>
                     <button type="button" aria-label="Notifications">
                         <Bell size={22} />
                     </button>

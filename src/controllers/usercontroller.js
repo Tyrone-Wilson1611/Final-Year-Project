@@ -13,26 +13,31 @@ export const getUsername = async (req, res) => {
                 createdAt: true,
                         _count: {
                             select: {
-                            followers: true,
-                            following: true,
-                            photos: {
-                                where: {
-                                    type: "post"
+                                followers: true,
+                                following: true,
+                                photos: {
+                                    where: {
+                                        type: "post"
+                                    }
                                 }
                             }
-                            }
                         },
-                        orderBy: {
-                        createdAt: "desc"
-                        },
-                    include: {
-                        _count: {
-                            select: {comments: true,
-                                likes: true
+
+                        photos: {
+                            where: {
+                                type: "post"
+                            },
+                            orderBy: {
+                                createdAt: "desc"
+                            },
+                            include: {
+                                _count: {
+                                    select: {comments: true,
+                                        likes: true
                             }
                         }
                     }
-                
+                }
             }
         });
         if (!user) {

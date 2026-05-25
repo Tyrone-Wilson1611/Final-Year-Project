@@ -31,9 +31,13 @@ const Login = () => {
         }
     };
     return (
-        <main>
+        <main className="auth-page">
+            <section className="auth-panel">
+                <h1 className="auth-title">PhotoPort</h1>
+                <p className="auth-subtitle">Login</p>
+            
             <h1>Login</h1>
-            <form onSubmit = {handleSubmit}>
+            <form onSubmit = {handleSubmit} className="auth-form">
                 <input
                 name = "email"
                 type = "email"
@@ -54,7 +58,8 @@ const Login = () => {
                 <button type = "submit">Login</button>
             </form>
 
-            <p>Don't have an account yet?<Link to = "/register">Sign up here</Link></p>
+            <p className="auth-switch">Don't have an account yet?<Link to = "/register">Sign up here</Link></p>
+           </section> 
         </main>
     );
 

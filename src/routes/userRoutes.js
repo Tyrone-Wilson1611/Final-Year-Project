@@ -1,4 +1,5 @@
-import express, { Router } from "express";
+import { Router } from "express";
+import express from "express";
 import { getProfile, getUsername, updateProfile } from "../controllers/userController.js";
 import authMiddleware from "../middleware/authmiddleware.js";
 

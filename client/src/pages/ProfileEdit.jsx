@@ -7,7 +7,7 @@ import Navbar from '../components/Navbar.jsx';
 
 const ProfileEdit = () => {
     const navigate = useNavigate();
-    const { user } = useAuth();
+    const { updateUser } = useAuth();
 
     const [form, setForm] = useState({
         username: "",
@@ -56,7 +56,7 @@ const ProfileEdit = () => {
                 body: JSON.stringify(form)
             });
 
-            localStorage.setItem("user", JSON.stringify(data.user));
+            updateUser(data.user);
 
             navigate(`/users/${data.user.username}`);
 

@@ -35,10 +35,12 @@ const Register =() => {
     };
 
     return (
-        <main>
-            <h1>User Registration</h1>
+        <main className="auth-page">
+            <section className="auth-panel">
+            <h1 className="auth-title">PhotoPort</h1>
+            <p className="auth-subtitle">User Registration</p>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="auth-form">
                 <input 
                 name = "username"
                 placeholder = "Username"
@@ -65,7 +67,8 @@ const Register =() => {
                 <button type = "submit">Create</button>
                 </form>
 
-                <p>Already have an account? <Link to="/login">Login here</Link></p>
+                <p className="auth-switch">Already have an account? <Link to="/login">Login here</Link></p>
+                  </section>
         </main>
     )
 }
