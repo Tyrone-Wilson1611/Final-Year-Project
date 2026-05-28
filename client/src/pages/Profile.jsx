@@ -39,7 +39,7 @@ const Profile = () => {
             }
         };
 
-        loadProfle();
+        loadProfile();
     }, [username]);
 
     useEffect(() => {
